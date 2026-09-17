@@ -113,8 +113,10 @@ The Settings layer uses [ZMK conditional layers](https://zmk.dev/docs/keymaps/co
 
 | Half | Board | Shield |
 | --- | --- | --- |
-| Left / central | `nice_nano_v2` | `acorn_central_left` |
-| Right / peripheral | `nice_nano_v2` | `acorn_peripheral_right` |
+| Left / central | `nice_nano@2.0.0//zmk` | `acorn_central_left` |
+| Right / peripheral | `nice_nano@2.0.0//zmk` | `acorn_peripheral_right` |
+
+The board target explicitly selects nice!nano revision 2 with the ZMK variant. Studio USB support is enabled only on the left/central half. Its Bluetooth limits reserve five host profiles plus the peripheral connection, overriding the Acorn module's three-profile default.
 
 The [GitHub Actions workflow](.github/workflows/build.yml) runs on pushes, pull requests, and manual dispatch. Push changes, check that both firmware targets build successfully, then download the resulting firmware artifact. Use the matching firmware for each half when flashing.
 
