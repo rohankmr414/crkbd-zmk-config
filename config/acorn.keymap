@@ -9,6 +9,15 @@
 };
 
 / {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        settings {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+
     macros {
         bt_clear: bt_clear {
             compatible = "zmk,behavior-macro";
@@ -53,17 +62,16 @@
             display-name = "lower";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | DEL  |
-// | CTRL | BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT | STD |     |     |     |BTCLR|   | HOME| PGDN| PGUP| END |     |      |
+// | CTRL |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |      |
+// | SHFT |     |     |     |     |     |   | HOME| PGDN| PGUP| END |     |      |
 //                    | ALT |     | ENT |   | SPC |     | ESC |
 // Rightmost thumb: tap Escape, hold Raise (inherited from base).
-// STD: Lower + Z unlocks ZMK Studio.
-// BTCLR: hold Lower + B for one second; a short tap does nothing.
+// Hold Lower + Raise together for Settings.
             bindings = <
-&kp TAB   &kp N1         &kp N2       &kp N3       &kp N4       &kp N5             &kp N6    &kp N7    &kp N8    &kp N9    &kp N0 &kp DEL
-&trans    &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4       &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans &trans
-&kp LSHFT &studio_unlock &trans       &trans       &trans       &bt_clear_hold 0 0 &kp HOME  &kp PG_DN &kp PG_UP &kp END   &trans &trans
-                                      &trans       &trans       &kp RET            &kp SPACE &trans    &trans
+&kp TAB   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5  &kp N6    &kp N7    &kp N8    &kp N9    &kp N0 &kp DEL
+&trans    &trans &trans &trans &trans &trans  &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans &trans
+&kp LSHFT &trans &trans &trans &trans &trans  &kp HOME  &kp PG_DN &kp PG_UP &kp END   &trans &trans
+                        &trans &trans &kp RET &kp SPACE &trans    &trans
             >;
         };
 
@@ -83,9 +91,21 @@
             >;
         };
 
-        extra_layer0 {
-            display-name = "extra_layer0";
-            status = "reserved";
+        settings_layer {
+            display-name = "settings";
+// -----------------------------------------------------------------------------------------
+// |      | BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
+// |      |     |     |     |     |     |   |     |     |     |     |     |      |
+// |      | STD |     |     |     |BTCLR|   |     |     |     |     |     |      |
+//                    |     |     |     |   |     | LWR | RSE |
+// Active only while Lower + Raise are held. Blank keys do nothing.
+// STD: Z unlocks ZMK Studio. BTCLR: hold B for one second; taps do nothing.
+            bindings = <
+&none &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4       &none &none  &none  &none &none &none
+&none &none          &none        &none        &none        &none              &none &none  &none  &none &none &none
+&none &studio_unlock &none        &none        &none        &bt_clear_hold 0 0 &none &none  &none  &none &none &none
+                                  &none        &none        &none              &none &trans &trans
+            >;
         };
 
         extra_layer1 {
