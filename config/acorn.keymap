@@ -7,6 +7,27 @@
 };
 
 / {
+    macros {
+        bt_clear: bt_clear {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&bt BT_CLR>;
+        };
+    };
+
+    behaviors {
+        bt_clear_hold: bt_clear_hold {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            // Other key presses must not bypass the one-second hold.
+            flavor = "tap-preferred";
+            tapping-term-ms = <1000>;
+            bindings = <&bt_clear>, <&none>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -40,13 +61,14 @@
             display-name = "lower";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+// | CTRL | BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+// | SHFT |     |     |     |     |BTCLR|   |     |     |     |     |     |      |
 //                    | GUI |     | ENT |   | SPC |     | ALT |
+// BTCLR: hold Lower + B for one second; a short tap does nothing.
             bindings = <
 &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-&kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
+&trans     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4       &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+&kp LSHFT  &trans       &trans       &trans       &trans       &bt_clear_hold 0 0 &trans   &trans   &trans &trans    &trans &trans
                                      &kp LGUI     &trans       &kp RET      &kp SPACE  &trans   &kp LALT
             >;
         };
