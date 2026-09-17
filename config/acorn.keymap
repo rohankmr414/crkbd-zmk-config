@@ -3,6 +3,8 @@
 #include <dt-bindings/zmk/bt.h>
 
 &lt {
+    // Activate Raise when another key is pressed and released while Escape is held.
+    flavor = "balanced";
     tapping-term-ms = <200>;
 };
 
