@@ -1,6 +1,6 @@
 # Corne / Acorn ZMK layout
 
-A 42-key QWERTY split layout for macOS, Linux, and Windows, with plain Space on the right thumb, dedicated modifiers, and separate navigation, symbol, and settings layers.
+A 42-key QWERTY split layout for macOS, Linux, and Windows, with plain Space on the right thumb, dedicated modifiers, and separate navigation, symbol/media, and settings layers.
 
 The keymap lives in [config/acorn.keymap](config/acorn.keymap). These diagrams show each layer's explicit bindings. Transparent positions are marked `TRNS` instead of repeating the inherited keys. The thumb keys are shown left to right as they appear in the keymap; spacing is schematic.
 
@@ -37,7 +37,7 @@ Symbols assume a US host keyboard layout. Native navigation and modifier keys ar
 Space and Enter are ordinary single-purpose keys. Ctrl occupies the usual Caps Lock position. Caps Lock and F1–F12 are not currently mapped.
 
 - Hold **Lower** for numbers and navigation.
-- Tap **Esc/Rse** for Escape, or hold it for symbols.
+- Tap **Esc/Rse** for Escape, or hold it for symbols and media controls.
 - Hold **Lower + Esc/Rse** to enter Settings once Raise activates.
 
 Escape/Raise uses a 200 ms `balanced` hold-tap: a short tap produces Escape; holding for 200 ms activates Raise. Pressing and releasing another key while Escape/Raise remains held can activate Raise sooner. Releasing Escape/Raise first during a quick roll can still resolve as Escape.
@@ -65,21 +65,32 @@ The left-hand home-row and bottom-row letters remain available, so editing short
 | N / M / comma / period | Home / Page Down / Page Up / End |
 | Backspace | Forward Delete |
 
-## Raise — symbols
+## Raise — symbols and media
 
 ```text
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
 |  Tab  |   !   |   @   |   #   |   $   |   %   |   |   ^   |   &   |   *   |   (   |   )   |  Bksp |
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
-|  Ctrl |  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |   |   -   |   =   |   [   |   ]   |   \   |   `   |
+|  Ctrl |  Mute |  Vol- |  Vol+ |  Bri- |  Bri+ |   |   -   |   =   |   [   |   ]   |   \   |   `   |
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
-| LShift|  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |   |   _   |   +   |   {   |   }   |   |   |  TRNS |
+| LShift|  Prev |  Play |  Next |  TRNS |  TRNS |   |   _   |   +   |   {   |   }   |   |   |  TRNS |
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
                         |  TRNS |  TRNS | Enter |   | Space |  TRNS |  TRNS |
                         +-------+-------+-------+   +-------+-------+-------+
 ```
 
 Right Shift stays available. To type a tilde (`~`), hold **Raise + Left Shift**, then press the base-layer apostrophe key, which becomes backtick on Raise. Alt/Option and GUI/Command/Windows/Super also stay in their usual thumb positions.
+
+| Hold Raise and press | Action |
+| --- | --- |
+| A | Mute / unmute |
+| S / D | Volume down / up |
+| F / G | Brightness down / up |
+| Z / X / C | Previous track / play-pause / next track |
+
+`Play` toggles playback and pause. These keys replace the inherited letters while Raise is held; release Raise before using those letters or their Ctrl/Control or Command shortcuts. Lower still preserves its left-hand editing shortcuts.
+
+The bindings use consumer media keycodes supported on macOS, Windows, and Linux; brightness behavior depends on the display and OS setup, especially for external monitors. See [ZMK's media keycodes](https://zmk.dev/docs/keymaps/list-of-keycodes#media). This board has no rotary encoders, so volume is controlled through these key bindings.
 
 ## Settings — hold Lower + Raise
 

@@ -44,7 +44,6 @@
 
         default_layer {
             display-name = "base";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
 // -----------------------------------------------------------------------------------------
 // | TAB  |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BSPC |
 // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |  '   |
@@ -79,15 +78,17 @@
             display-name = "raise";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" | RSHFT|
+// | CTRL |MUTE |VOL- |VOL+ |BRI- |BRI+ |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+// | SHFT |PREV |PLAY |NEXT |     |     |   |  _  |  +  |  {  |  }  | "|" | RSHFT|
 //                    | ALT |     | ENT |   | SPC |     | ESC |
 // Rightmost thumb: tap Escape, hold Raise (inherited from base).
+// VOL-/VOL+ volume down/up; BRI-/BRI+ brightness down/up; PLAY toggles play/pause.
+// Release Raise to use the replaced letters/shortcuts.
             bindings = <
-&kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-&kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-&kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &trans
-                          &trans   &trans   &kp RET     &kp SPACE &trans    &trans
+&kp TAB   &kp EXCL   &kp AT       &kp HASH     &kp DLLR     &kp PRCNT    &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
+&kp LCTRL &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_BRI_DN &kp C_BRI_UP &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
+&kp LSHFT &kp C_PREV &kp C_PP     &kp C_NEXT   &trans       &trans       &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &trans
+                                  &trans       &trans       &kp RET      &kp SPACE &trans    &trans
             >;
         };
 
