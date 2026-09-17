@@ -30,16 +30,6 @@
         };
     };
 
-    combos {
-        compatible = "zmk,combos";
-
-        combo_studio_unlock {
-            timeout-ms = <50>;
-            key-positions = <0 1>;
-            bindings = <&studio_unlock>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -64,15 +54,16 @@
 // -----------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
 // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |BTCLR|   |     |     |     |     |     |      |
+// | SHFT | STD |     |     |     |BTCLR|   |     |     |     |     |     |      |
 //                    | ALT |     | ENT |   | SPC |     | ESC |
 // Rightmost thumb: tap Escape, hold Raise (inherited from base).
+// STD: Lower + Z unlocks ZMK Studio.
 // BTCLR: hold Lower + B for one second; a short tap does nothing.
             bindings = <
-&kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-&trans     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4       &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-&kp LSHFT  &trans       &trans       &trans       &trans       &bt_clear_hold 0 0 &trans   &trans   &trans &trans    &trans &trans
-                                     &trans       &trans       &kp RET      &kp SPACE  &trans   &trans
+&kp TAB   &kp N1         &kp N2       &kp N3       &kp N4       &kp N5             &kp N6    &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
+&trans    &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4       &kp LEFT  &kp DOWN &kp UP &kp RIGHT &trans &trans
+&kp LSHFT &studio_unlock &trans       &trans       &trans       &bt_clear_hold 0 0 &trans    &trans   &trans &trans    &trans &trans
+                                      &trans       &trans       &kp RET            &kp SPACE &trans   &trans
             >;
         };
 
