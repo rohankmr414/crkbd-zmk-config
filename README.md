@@ -46,9 +46,9 @@ Escape/Raise uses a 200 ms `balanced` hold-tap: a short tap produces Escape; hol
 
 ```text
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
-|  Tab  |   1   |   2   |   3   |   4   |   5   |   |   6   |   7   |   8   |   9   |   0   |  Del  |
+|  Tab  |   1   |   2   |   3   |   4   |   5   |   |   6   |   7   |   8   |   9   |   0   |  Bksp |
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
-|  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |   |  Left |  Down |   Up  | Right |  TRNS |  TRNS |
+|  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |   |  Left |  Down |   Up  | Right |  TRNS |  Del  |
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
 | LShift|  TRNS |  TRNS |  TRNS |  TRNS |  TRNS |   |  Home |  PgDn |  PgUp |  End  |  TRNS |  TRNS |
 +-------+-------+-------+-------+-------+-------+   +-------+-------+-------+-------+-------+-------+
@@ -63,7 +63,10 @@ The left-hand home-row and bottom-row letters remain available, so editing short
 | Q through P | Numbers 1 through 0 |
 | H / J / K / L | Left / Down / Up / Right |
 | N / M / comma / period | Home / Page Down / Page Up / End |
-| Backspace | Forward Delete |
+| Backspace | Backspace (delete the previous character) |
+| Apostrophe (`'`) | Forward Delete (⌦, delete the next character) |
+
+Backspace retains its normal behavior while typing numbers with Lower held. Forward Delete sits directly below it, on the base-layer apostrophe key. Release Lower to type apostrophes or double quotes.
 
 ## Raise — symbols and media
 

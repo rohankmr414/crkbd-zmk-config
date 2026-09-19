@@ -60,15 +60,15 @@
         lower_layer {
             display-name = "lower";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | DEL  |
-// | CTRL |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |      |
+// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
+// | CTRL |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     | DEL  |
 // | SHFT |     |     |     |     |     |   | HOME| PGDN| PGUP| END |     |      |
 //                    | ALT |     | ENT |   | SPC |     | ESC |
 // Rightmost thumb: tap Escape, hold Raise (inherited from base).
 // Hold Lower + Raise together for Settings.
             bindings = <
-&kp TAB   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5  &kp N6    &kp N7    &kp N8    &kp N9    &kp N0 &kp DEL
-&trans    &trans &trans &trans &trans &trans  &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans &trans
+&kp TAB   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5  &kp N6    &kp N7    &kp N8    &kp N9    &kp N0 &kp BSPC
+&trans    &trans &trans &trans &trans &trans  &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans &kp DEL
 &kp LSHFT &trans &trans &trans &trans &trans  &kp HOME  &kp PG_DN &kp PG_UP &kp END   &trans &trans
                         &trans &trans &kp RET &kp SPACE &trans    &trans
             >;
